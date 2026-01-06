@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Donor List</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 50%; }
+    th, td { border: 1px solid #333; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <h1>Donor List</h1>
+  <table id="donorTable">
+    <tr><th>ID</th><th>Name</th><th>Blood Type</th></tr>
+  </table>
+
+  <script>
+    async function fetchDonors() {
+      const response = await fetch('/donors');
+      const donors = await response.json();
+      const table = document.getElementById('donorTable');
+
+      // Clear existing rows except header
+      table.innerHTML = '<tr><th>ID</th><th>Name</th><th>Blood Type</th></tr>';
+
+      donors.forEach(donor => {
+        const row = table.insertRow();
+        row.insertCell(0).textContent = donor.id;
+        row.insertCell(1).textContent = donor.name;
+        row.insertCell(2).textContent = donor.bloodType;
+      });
+    }
+
+    // Refresh every 3 seconds
+    setInterval(fetchDonors, 3000);
+
+    // Initial load
+    fetchDonors();
+  </script>
+</body>
+</html>
