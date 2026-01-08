@@ -8,6 +8,7 @@ const donors = [
   { id: 5, name: "Asim", bloodType: "B+"},
   { id: 6, name: "Lina", bloodType: "A-"},
   { id: 7, name: "Nora", bloodType: "O-"},
+  { id: 8, name: "Khalid", bloodType: "AB-"},
 
 
 
